@@ -59,6 +59,8 @@ public class TimeEntryApiTest {
 
         DocumentContext listJson = parse(listResponse.getBody());
 
+        System.out.println(String.format("LIST GOT BODY: %s", listResponse.getBody()));
+
         Collection timeEntries = listJson.read("$[*]", Collection.class);
         assertThat(timeEntries.size()).isEqualTo(1);
 
@@ -96,6 +98,7 @@ public class TimeEntryApiTest {
 
         assertThat(updateResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 
+        System.out.println(String.format("UPDATE GOT BODY: %s", updateResponse.getBody()));
         DocumentContext updateJson = parse(updateResponse.getBody());
         assertThat(updateJson.read("$.id", Long.class)).isEqualTo(id);
         assertThat(updateJson.read("$.projectId", Long.class)).isEqualTo(projectId);

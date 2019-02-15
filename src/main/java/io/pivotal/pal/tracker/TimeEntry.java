@@ -11,6 +11,7 @@ public class TimeEntry {
 
     public TimeEntry() {
         this.id = -1;
+        System.out.println(String.format("Constructed time entry: %s", this.toString()));
     }
 
     public TimeEntry(long projectId, long userId, LocalDate date, int hours) {
@@ -19,6 +20,7 @@ public class TimeEntry {
         this.userId = userId;
         this.date = date;
         this.hours = hours;
+        System.out.println(String.format("Constructed time entry: %s", this.toString()));
     }
 
     public TimeEntry(long timeEntryId, long projectId, long userId, LocalDate date, int hours) {
@@ -27,14 +29,7 @@ public class TimeEntry {
         this.userId = userId;
         this.date = date;
         this.hours = hours;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    void setId(Long timeEntryId) {
-        this.id = timeEntryId;
+        System.out.println(String.format("Constructed time entry: %s", this.toString()));
     }
 
     @Override
@@ -48,19 +43,61 @@ public class TimeEntry {
                             this.getId()
                     )
             );
+
             return testEntry.getId().equals(this.getId());
         } else {
             return false;
         }
     }
 
-    long getUserId() {
-        return this.userId;
+    @Override
+    public String toString() {
+        return String.format(
+                "Time Entry (id: %d, user: %d, project: %d, hours: %d)",
+                id,
+                userId,
+                projectId,
+                hours
+        );
     }
 
-    void setUserId(long newUserId) {
-        this.userId = newUserId;
+    public long getUserId() {
+        return userId;
     }
 
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    void setId(Long timeEntryId) {
+        this.id = timeEntryId;
+    }
 }
