@@ -12,8 +12,18 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 springBoot {
     mainClassName = "io.pivotal.pal.tracker.PalTrackerApplication"
 }
+
+bootRun.environment([
+        "WELCOME_MESSAGE": "hello, is it a case of vertigo?",
+])
+
+test.environment([
+        "WELCOME_MESSAGE": "Hello, test vertigo",
+])
